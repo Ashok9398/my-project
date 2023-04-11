@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Helloabi from "./abi/Hello.json";
+import charity from "./charity";
 import Web3 from "web3";
 import Navbar from './components/Layout Pages/Navbar';
 import StartPage from './components/Layout Pages/StartPage';
@@ -31,16 +31,11 @@ function App() {
       if (accounts.length === 0) {
         return;
       }
-      const networkId = await web3.eth.net.getId();
-      let deployedNetwork = Helloabi.networks[networkId];
+      
 
       try {
-        const ContractInstance = new web3.eth.Contract(
-          Helloabi.abi,
-          deployedNetwork && deployedNetwork.address
-        );
         
-        setContract(ContractInstance);
+        setContract(charity);
   
       } catch {
         window.alert("the contract not deployed to detected network.");
